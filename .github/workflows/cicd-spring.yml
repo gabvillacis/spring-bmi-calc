@@ -40,7 +40,7 @@ jobs:
           tags: gabvillacis93/spring-bmi-calc:latest
     
   deploy:
-    depends-on: build-and-publish
+    needs: build-and-publish
     runs-on: ubuntu-latest 
     
     steps:
@@ -54,9 +54,3 @@ jobs:
             docker stop spring-bmi-calc
             docker rm spring-bmi-calc
             docker run --pull always -d -p 80:8000 --name spring-bmi-calc gabvillacis93/spring-bmi-calc:latest
-
-
-
-  
-          
-      
