@@ -45,7 +45,7 @@ jobs:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-          script: docker run --pull always -d -p 80:8000 gabvillacis93/spring-bmi-calc:latest      
+          script: docker run --rm --pull always -d -p 80:8000 gabvillacis93/spring-bmi-calc:latest      
   
           
       
