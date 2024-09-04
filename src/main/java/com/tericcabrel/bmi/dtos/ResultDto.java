@@ -17,7 +17,7 @@ public class ResultDto {
 
     private String getBmiRange(double bmi) {
         if (bmi < 19) {
-            return BMI_UNDERWEIGHT;
+            return BMI_OBESITY_CLASS_TWO;
         }
 
         if (bmi >= 19 && bmi < 25) {
