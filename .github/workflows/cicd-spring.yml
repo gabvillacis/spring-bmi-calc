@@ -39,5 +39,13 @@ jobs:
           push: true
           tags: gabvillacis93/spring-bmi-calc:latest
 
+      - name: Deploy to Prod Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          script: docker run --pull always -d -p 80:8000 gabvillacis93/spring-bmi-calc:latest      
+  
           
       
