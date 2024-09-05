@@ -39,6 +39,13 @@ jobs:
           push: true
           tags: gabvillacis93/spring-bmi-calc:latest
 
+  deploy:
+    needs: build-and-publish
+
+    runs-on: ubuntu-latest
+
+    steps:
+
       - name: Deploy to Production Server
         uses: appleboy/ssh-action@v1.0.3
         with:
