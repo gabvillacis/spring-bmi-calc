@@ -38,19 +38,3 @@ jobs:
           file: Dockerfile
           push: true
           tags: gabvillacis93/spring-bmi-calc:latest
-    
-  deploy:
-    needs: build-and-publish
-    runs-on: ubuntu-latest 
-    
-    steps:
-      - name: Deploy to Prod Server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.PROD_HOST }}
-          username: ${{ secrets.PROD_USERNAME }}
-          key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-          script: | 
-            docker stop spring-bmi-calc
-            docker rm spring-bmi-calc
-            docker run --pull always -d -p 80:8000 --name spring-bmi-calc gabvillacis93/spring-bmi-calc:latest
