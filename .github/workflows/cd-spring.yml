@@ -3,6 +3,8 @@ name: CD Spring Web App
 on: 
   workflow_dispatch:
 
+jobs:
+  
   deploy:
     needs: build-and-publish # Requiere que termine primero termine build-and-publish
 
