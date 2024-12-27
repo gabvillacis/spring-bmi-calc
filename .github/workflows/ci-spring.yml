@@ -2,7 +2,8 @@ name: CI Spring Web App
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build-and-publish:
@@ -22,7 +23,7 @@ jobs:
       - name: Install Maven dependencies
         run: mvn install -DskipTests
       
-      - name: Run test & Generate Jar Package
+      - name: Generate Jar Package & Run tests
         run: mvn --batch-mode verify
 
       - name: Login to Docker Hub
