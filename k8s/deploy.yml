@@ -1,0 +1,45 @@
+# Deployment para la web app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-bmi-calc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-bmi-calc
+  template:
+    metadata:
+      labels:
+        app: spring-bmi-calc
+    spec:
+      containers:
+      - name: spring-bmi-calc
+        image: "$DOCKER_IMAGE"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: spring-bmi-calc-config
+        resources:
+          requests: 
+            memory: "256Mi" # Solicita esta cantidad de memoria
+            cpu: "500m" # Solicita esta cantidad de CPU (0.5vcpu)
+          limits:
+            memory: "512Mi" # Limita a esta cantidad de memoria
+            cpu: "1" # Limita a esta cantidad de CPU (1vcpu)      
+---
+# Servicio para la web app
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-bmi-calc-service
+spec:
+  selector:
+    app: spring-bmi-calc
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
