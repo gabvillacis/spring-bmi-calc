@@ -6,10 +6,10 @@ metadata:
 spec:
   replicas: 3
   strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 1 # Máximo número de pods que pueden estar no disponibles durante la actualización
-    maxSurge: 1       # Máximo número de pods adicionales que se pueden crear temporalmente
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1 # Máximo número de pods que pueden estar no disponibles durante la actualización
+      maxSurge: 1       # Máximo número de pods adicionales que se pueden crear temporalmente
   selector:
     matchLabels:
       app: spring-bmi-calc
