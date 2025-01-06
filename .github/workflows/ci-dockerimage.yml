@@ -1,4 +1,4 @@
-name: CI Spring Web App
+name: CI Spring Web App - Publish Docker Image
 
 on:
   push:
