@@ -5,6 +5,11 @@ metadata:
   name: spring-bmi-calc
 spec:
   replicas: 3
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1 # Máximo número de pods que pueden estar no disponibles durante la actualización
+    maxSurge: 1       # Máximo número de pods adicionales que se pueden crear temporalmente
   selector:
     matchLabels:
       app: spring-bmi-calc
@@ -15,13 +20,10 @@ spec:
     spec:
       containers:
       - name: spring-bmi-calc
-        image: "$DOCKER_IMAGE"
+        image: gabvillacis93/spring-bmi-calc:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-        envFrom:
-        - configMapRef:
-            name: spring-bmi-calc-config
         resources:
           requests: 
             memory: "256Mi" # Solicita esta cantidad de memoria
