@@ -1,7 +1,7 @@
 name: CD Spring Web App - Deploy to Amazon EKS
 
 on:
-  workflow_distpatch:
+  workflow_dispatch:
 
 jobs:
   deploy:
