@@ -20,7 +20,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Update Kubeconfig
-        run: aws eks update-kubeconfig --name ${{ secret.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
+        run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
       
       - name: Apply Kubernetes manifests
         run: kubectl apply -f k8s/deploy.yml
